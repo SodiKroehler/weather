@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     let ammassed = ""
 
     for (let i=0; i<2; i++){
-        let msg = "Hi " + names[i] + ". " + getWeather()
+        let msg = "Hi " + names[i] + ". Current forecast is " + await getWeather()
         ammassed = ammassed + "|" + msg + "{}" + numbers[i]
     }
 
