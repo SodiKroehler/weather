@@ -9,6 +9,11 @@ const getNames = async () => {
 
 export async function GET(req: NextRequest) {
 
+    const myKey =req.nextUrl.searchParams.get("key")
+  
+    if (myKey !== process.env.SUPERSECRETKEY){
+      return NextResponse.json({ error: 'Internal Server Error' }, { status: 404 })
+    } 
     let dictUrl = await getNames()
 
     let dict = await fetch(dictUrl).then(r => r.json())

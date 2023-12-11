@@ -54,7 +54,7 @@ export async function POST(request: Request){
         phone: formJizz.phoneNumber,
         lat: formJizz.latitude,
         long: formJizz.longitude,
-        time: formJizz.selectedTime,
+        time: formJizz.selectedTime.toString(),
         office: "",
         points: "",
         extras: [formJizz.extras],

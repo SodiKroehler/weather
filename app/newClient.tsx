@@ -61,7 +61,7 @@ const NewClient: React.FC = () => {
 
   return (
     <div className={styles.bigContainer}>
-        <p> sign up for weather texts, bro </p>
+        {!submitted && <p> sign up for weather texts, bro </p>}
         {!submitted && <div className={styles.formContainer}>
         <form onSubmit={handleSubmit} className={styles.form}>
             <label className={styles.mylabel}>
