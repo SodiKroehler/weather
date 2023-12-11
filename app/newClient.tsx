@@ -10,6 +10,7 @@ interface FormData {
   selectedTime: number;
   latitude: string;
   longitude: string;
+  extras: string;
 }
 
 const NewClient: React.FC = () => {
@@ -19,6 +20,7 @@ const NewClient: React.FC = () => {
     selectedTime: 0,
     latitude: '',
     longitude: '',
+    extras: ''
   });
   const [submitted, setsubmitted] = useState(false);
 
@@ -113,6 +115,18 @@ const NewClient: React.FC = () => {
                 name="longitude"
                 className={styles.myInput}
                 value={formData.longitude}
+                onChange={handleInputChange}
+            />
+            </label>
+            <br />
+
+            <label className={styles.mylabel}>
+            Anything else you want (like cool facts/stories etc):
+            <input
+                type="text"
+                name="extras"
+                className={styles.myInput}
+                value={formData.extras}
                 onChange={handleInputChange}
             />
             </label>

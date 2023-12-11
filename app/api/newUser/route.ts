@@ -57,7 +57,7 @@ export async function POST(request: Request){
         time: formJizz.selectedTime,
         office: "",
         points: "",
-        extras: [],
+        extras: [formJizz.extras],
       })
     const {office, points} = await getDetailsByLatLong(userDeets.lat, userDeets.long)
     userDeets.office = office;
