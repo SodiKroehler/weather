@@ -10,6 +10,7 @@ const getNames = async () => {
 export async function GET(req: NextRequest) {
 
     const myKey =req.nextUrl.searchParams.get("key")
+    const time =req.nextUrl.searchParams.get("time")
   
     if (myKey !== process.env.SUPERSECRETKEY){
       return NextResponse.json({ error: 'Internal Server Error' }, { status: 404 })
@@ -20,11 +21,13 @@ export async function GET(req: NextRequest) {
     let ammassed = ""
 
     for (let sendTime in dict){
-        for (let u in dict[sendTime]){
-            let msg = "Hi " + dict[sendTime][u].firstName + ". Current forecast is " + await getWeather(dict[sendTime][u].office, dict[sendTime][u].points)
+        if (sendTime === time){
+            for (let u in dict[sendTime]){
+                let msg = "Hi " + dict[sendTime][u].firstName + ". Current forecast is " + await getWeather(dict[sendTime][u].office, dict[sendTime][u].points)
 
-            ammassed = ammassed + "|" + msg + "{}" + dict[sendTime][u].phone
+                ammassed = ammassed + "|" + msg + "{}" + dict[sendTime][u].phone
+            }
         }
     }
-    return NextResponse.json({ammassed})
+    return NextResponse.json({"messages":ammassed})
 }
