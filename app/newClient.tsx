@@ -49,10 +49,17 @@ const NewClient: React.FC = () => {
       [name]: value,
     });
   };
+  const handleInputChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   return (
     <div className={styles.bigContainer}>
-        <p> sign up for weather texts </p>
+        <p> sign up for weather texts, bro </p>
         {!submitted && <div className={styles.formContainer}>
         <form onSubmit={handleSubmit} className={styles.form}>
             <label className={styles.mylabel}>
@@ -79,14 +86,14 @@ const NewClient: React.FC = () => {
             <br />
   
 
-            <label htmlFor="time" className={styles.mylabel}>Time to Send (EST):</label>
-             <select id="time" name="selectedTime" value={formData.selectedTime} className={styles.myInput} onChange={handleInputChange}>
+            <label htmlFor="time" className={styles.mylabel}>Time to Send (EST):
+             <select id="time" name="selectedTime" value={formData.selectedTime} className={styles.myInput} onChange={handleInputChangeSelect}>
                  {[6, 7, 8, 9, 10].map(hour => (
                      <option key={hour} value={hour}>{hour + " AM"} </option>
                  ))}
              </select>
+            </label>
 
-            <br />
             <br />
             <label className={styles.mylabel}>
             Latitude:
@@ -110,7 +117,9 @@ const NewClient: React.FC = () => {
             />
             </label>
             <br />
-            <button type="submit" className={styles.myButton}>Submit</button>
+            <div  className={styles.buttonDiv}> 
+              <button type="submit" className={styles.myButton}>Submit</button>
+            </div>
         </form>
         </div>}
 
