@@ -1,6 +1,19 @@
-export default async function getWeather(){
 
-    let w = await fetch("https://api.weather.gov/gridpoints/PBZ/82,67/forecast").then((r) => r.json())
+export async function getDetailsByLatLong(lat, long){
+    
+    const queryString = "https://api.weather.gov/points/" + lat + "," + long
+    console.log(queryString)
+
+    let w = await fetch(queryString).then((r) => r.json())
+    // console.log(w.properties.periods[0].detailedForecast)
+    return {"office": w.properties.cwa, "points": w.properties.gridX + "," + w.properties.gridY}
+}
+
+export default async function getWeather(office, points){
+    
+    const queryString = "https://api.weather.gov/gridpoints/" + office + "/" + points + "/forecast"
+
+    let w = await fetch(queryString).then((r) => r.json())
     // console.log(w.properties.periods[0].detailedForecast)
     return w.properties.periods[0].shortForecast
 }
