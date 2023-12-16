@@ -29,7 +29,16 @@ export async function GET(req: NextRequest) {
           amass += JSON.stringify(dict)
         }
         return Response.json(amass);
-      }      
+      }
+      case "test": {
+        const { blobs } = await list({prefix: "/data"});
+        for (let blob in blobs){
+          let dict = await fetch(blobs[0].url).then(r => r.json())
+          console.log(dict)
+        }
+
+        return Response.json(200);
+      }  
     }
   }
 }

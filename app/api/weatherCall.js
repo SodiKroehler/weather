@@ -2,7 +2,7 @@
 export async function getDetailsByLatLong(lat, long){
     
     const queryString = "https://api.weather.gov/points/" + lat + "," + long
-    console.log(queryString)
+    // console.log(queryString)
 
     let w = await fetch(queryString).then((r) => r.json())
     // console.log(w.properties.periods[0].detailedForecast)

@@ -17,7 +17,7 @@ const NewClient: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     phoneNumber: '',
-    selectedTime: 0,
+    selectedTime: 6,
     latitude: '',
     longitude: '',
     extras: ''
