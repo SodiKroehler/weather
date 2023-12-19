@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
         if (sendTime === time){
             for (let u in dict[sendTime]){
                 let msg = "Good mnorin " + dict[sendTime][u].firstName + ". Current forecast is " + await getWeather(dict[sendTime][u].office, dict[sendTime][u].points)
-                ammassed.push({firstName: dict[sendTime][u].firstName, message: msg})
+                ammassed.push({firstName: dict[sendTime][u].firstName, number: dict[sendTime][u].phone, message: msg})
                 // ammassed = ammassed + "|" + msg + "{}" + dict[sendTime][u].phone
             }
             
