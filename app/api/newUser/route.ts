@@ -73,6 +73,7 @@ export async function POST(request: Request){
             dict[userDeets.time] = [userDeets]
         }
         const blob = await put("/data", JSON.stringify(dict), {access: 'public', contentType: "string"}).then(r => {del(blobs[0].url)})
+        const delRes = await del(blobs[0].url)
     } else {
         var newDict: { [id: string] : [User]; } = {};
         newDict[userDeets.time] = [userDeets]

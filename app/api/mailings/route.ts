@@ -18,15 +18,17 @@ export async function GET(req: NextRequest) {
     let dictUrl = await getNames()
 
     let dict = await fetch(dictUrl).then(r => r.json())
-    let ammassed = ""
+    let ammassed = []
 
     for (let sendTime in dict){
         if (sendTime === time){
             for (let u in dict[sendTime]){
-                let msg = "Hi " + dict[sendTime][u].firstName + ". Current forecast is " + await getWeather(dict[sendTime][u].office, dict[sendTime][u].points)
-
-                ammassed = ammassed + "|" + msg + "{}" + dict[sendTime][u].phone
+                let msg = "Good mnorin " + dict[sendTime][u].firstName + ". Current forecast is " + await getWeather(dict[sendTime][u].office, dict[sendTime][u].points)
+                ammassed.push({firstName: dict[sendTime][u].firstName, message: msg})
+                // ammassed = ammassed + "|" + msg + "{}" + dict[sendTime][u].phone
             }
+            
+            // console.log(JSON.stringify(dict[sendTime]))
         }
     }
     return NextResponse.json({"messages":ammassed})
